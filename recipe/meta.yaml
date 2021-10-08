@@ -17,17 +17,22 @@ build:
 
 requirements:
   host:
-    - python
+    - python 
     - pip
     - setuptools_scm
+    - wheel
 
   run:
-    - python
+    - python >=3.6
     - importlib_metadata >=0.12  # [py<38]
 
 test:
   imports:
     - pluggy
+  requires:
+    - pip
+  command:
+    - pip check
 
 about:
   home: https://github.com/pytest-dev/pluggy
