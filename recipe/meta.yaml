@@ -1,6 +1,6 @@
 {% set name = "pluggy" %}
-{% set version = "0.13.1" %}
-{% set sha256 = "15b2acde666561e1298d71b523007ed7364de07029219b604cf808bfa1c765b0" %}
+{% set version = "1.0.0" %}
+{% set sha256 = "4224373bacce55f955a878bf9cfa763c1e360858e330072059e10bad68531159" %}
 
 package:
   name: {{ name }}
@@ -17,17 +17,23 @@ build:
 
 requirements:
   host:
-    - python
+    - python 
     - pip
     - setuptools_scm
+    - wheel
 
   run:
-    - python
+    - python >=3.6
     - importlib_metadata >=0.12  # [py<38]
 
 test:
   imports:
     - pluggy
+  requires:
+    - pip
+    - python <3.10
+  command:
+    - pip check
 
 about:
   home: https://github.com/pytest-dev/pluggy
