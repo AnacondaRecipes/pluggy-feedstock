@@ -1,51 +1,50 @@
 {% set name = "pluggy" %}
-{% set version = "1.0.0" %}
-{% set sha256 = "4224373bacce55f955a878bf9cfa763c1e360858e330072059e10bad68531159" %}
+{% set version = "1.5.0" %}
 
 package:
-  name: {{ name }}
+  name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
-  url: https://pypi.io/packages/source/{{ name [0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pluggy-{{ version }}.tar.gz
+  sha256: 2cffa88e94fdc978c4c574f15f9e59b7f4201d439195c3715ca9e2486f1d0cf1
 
 build:
-  number: 1
-  skip: True  # [py<36]
-  script: python -m pip install . --no-deps --ignore-installed
+  noarch: python
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
+  number: 0
 
 requirements:
   host:
-    - python 
+    - python >=3.8
+    - setuptools-scm
     - pip
-    - setuptools
-    - setuptools_scm
-    - wheel
-
   run:
-    - python
-    - importlib_metadata >=0.12  # [py<38]
+    - python >=3.8
 
 test:
   imports:
     - pluggy
+  commands:
+    - pip check
   requires:
     - pip
-  command:
-    - pip check
 
 about:
   home: https://github.com/pytest-dev/pluggy
   license: MIT
   license_family: MIT
   license_file: LICENSE
-  summary: 'Plugin registration and hook calling for Python'
+  summary: Plugin registration and hook calling for Python
   doc_url: https://pluggy.readthedocs.io/en/latest/
   dev_url: https://github.com/pytest-dev/pluggy/
 
 extra:
+  anaconda-services:
+    reason: Dependency for apache-airflow
+    recipe-maintainers:
+      - ianaobi
   recipe-maintainers:
-    - JohnGreeley
+    - johnnygenomics
     - nicoddemus
+    - adriendelsalle
