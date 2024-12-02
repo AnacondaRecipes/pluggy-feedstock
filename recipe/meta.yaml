@@ -1,6 +1,6 @@
 {% set name = "pluggy" %}
-{% set version = "1.0.0" %}
-{% set sha256 = "4224373bacce55f955a878bf9cfa763c1e360858e330072059e10bad68531159" %}
+{% set version = "1.5.0" %}
+{% set sha256 = "2cffa88e94fdc978c4c574f15f9e59b7f4201d439195c3715ca9e2486f1d0cf1" %}
 
 package:
   name: {{ name }}
@@ -12,28 +12,26 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 1
-  skip: True  # [py<36]
-  script: python -m pip install . --no-deps --ignore-installed
+  number: 0
+  skip: True  # [py<38]
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
 
 requirements:
   host:
-    - python 
+    - python
     - pip
-    - setuptools
-    - setuptools_scm
+    - setuptools >=45.0
     - wheel
-
+    - setuptools-scm >=6.2.3
   run:
     - python
-    - importlib_metadata >=0.12  # [py<38]
 
 test:
   imports:
     - pluggy
   requires:
     - pip
-  command:
+  commands:
     - pip check
 
 about:
@@ -41,8 +39,13 @@ about:
   license: MIT
   license_family: MIT
   license_file: LICENSE
-  summary: 'Plugin registration and hook calling for Python'
-  doc_url: https://pluggy.readthedocs.io/en/latest/
+  summary: Plugin registration and hook calling for Python
+  description: |
+    pluggy is the crystallized core of plugin management and hook calling for pytest. 
+    It enables 1400+ plugins to extend and customize pytest's default behaviour. 
+    Even pytest itself is composed as a set of pluggy plugins which are invoked 
+    in sequence according to a well defined set of protocols.
+  doc_url: https://pluggy.readthedocs.io
   dev_url: https://github.com/pytest-dev/pluggy/
 
 extra:
