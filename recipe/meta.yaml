@@ -12,7 +12,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
   skip: True  # [py<38]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
 
@@ -21,7 +21,6 @@ requirements:
     - python
     - pip
     - setuptools >=45.0
-    - wheel
     - setuptools-scm >=6.2.3
   run:
     - python
