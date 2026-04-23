@@ -23,6 +23,7 @@ requirements:
     - setuptools >=65.0
     - wheel
     - setuptools-scm >=8.0
+    - tomli  # [py<311]
   run:
     - python
 
