@@ -13,16 +13,16 @@ source:
 
 build:
   number: 0
-  skip: True  # [py<38]
+  skip: True  # [py<310]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
 
 requirements:
   host:
     - python
     - pip
-    - setuptools >=45.0
+    - setuptools >=65.0
     - wheel
-    - setuptools-scm >=6.2.3
+    - setuptools-scm >=8.0
   run:
     - python
 
