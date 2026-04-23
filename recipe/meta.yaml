@@ -1,6 +1,6 @@
 {% set name = "pluggy" %}
-{% set version = "1.5.0" %}
-{% set sha256 = "2cffa88e94fdc978c4c574f15f9e59b7f4201d439195c3715ca9e2486f1d0cf1" %}
+{% set version = "1.6.0" %}
+{% set sha256 = "7dcc130b76258d33b90f61b658791dede3486c3e6bfb003ee5c9bfb396dd22f3" %}
 
 package:
   name: {{ name }}
@@ -13,16 +13,17 @@ source:
 
 build:
   number: 0
-  skip: True  # [py<38]
+  skip: True  # [py<39]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
 
 requirements:
   host:
     - python
     - pip
-    - setuptools >=45.0
+    - setuptools >=65.0
     - wheel
-    - setuptools-scm >=6.2.3
+    - setuptools-scm >=8.0
+    - tomli  # [py<311]
   run:
     - python
 
