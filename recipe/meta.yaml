@@ -13,7 +13,7 @@ source:
 
 build:
   number: 0
-  skip: true  # [py<310]
+  skip: True  # [py<310]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
 
 requirements:
@@ -25,7 +25,6 @@ requirements:
     - tomli  # [py<311]
   run:
     - python
-    - eggsample
 
 test:
   imports:
